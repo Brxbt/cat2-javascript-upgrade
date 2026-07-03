@@ -22,6 +22,7 @@
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
       </ul>
     </nav>
+    <button id="theme-toggle" class="theme-toggle-btn">Dark Mode</button>
   </header>
 
   <!-- Main content(semantic html usage) -->
@@ -30,6 +31,9 @@
     <!-- Hero -->
     <section class="hero" id="home">
       <img src="images/banner.jpg" alt="Students and facilities at Santa Ana Calm Waters Academy, Ruiru" class="hero-image"/>
+      <div id="banner-caption" class="banner-caption">
+        <p>Serving God and Humanity Through Education &mdash; Santa Ana Calm Waters Academy, Ruiru Kenya</p>
+      </div>
       <div class="hero-overlay">
         <div class="hero-content">
           <h2 class="hero-heading">Shaping Tomorrow's Leaders</h2>
@@ -185,6 +189,25 @@
       </div>
     </section>
 
+    <!-- Co-Curricular Programs rendered by JavaScript -->
+    <section id="programs" class="section">
+      <h2 class="section-title">Co-Curricular Activities</h2>
+      <p class="section-intro">Explore our range of extracurricular programs designed to nurture every student's talents.</p>
+      <div id="programs-list" class="programs-grid"></div>
+    </section>
+
+    <!-- My Wishlist (add/remove feature) -->
+    <section id="wishlist" class="section wishlist-section">
+      <h2 class="section-title">My Activity Wishlist <span id="wishlist-count">0</span></h2>
+      <p class="section-intro">Pick activities you are interested in, or type your own below.</p>
+      <div class="wishlist-controls">
+        <input type="text" id="custom-wishlist-input" placeholder="Type an activity name..." />
+        <button id="custom-add-btn">Add Custom</button>
+      </div>
+      <div id="wishlist-feedback" class="wishlist-feedback"></div>
+      <ul id="wishlist-items" class="wishlist-list"></ul>
+    </section>
+
     <!-- Student Life -->
     <section id="student-life" class="section student-life-section">
       <h2 class="section-title">Student Life &amp; Activities</h2>
@@ -227,8 +250,29 @@
     <section id="contact" class="section contact-section">
       <h2 class="section-title">Get in Touch</h2>
       <p class="section-intro">We'd love to welcome your child into the Santa Ana family. Reach out today.</p>
-      <div class="contact-grid">
 
+      <!-- Enquiry form with JS validation -->
+      <div class="contact-form-wrap">
+        <h3>Send Us a Message</h3>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="form-name">Full Name</label>
+            <input type="text" id="form-name" placeholder="Enter your full name" />
+          </div>
+          <div class="form-group">
+            <label for="form-email">Email Address</label>
+            <input type="email" id="form-email" placeholder="Enter your email" />
+          </div>
+          <div class="form-group">
+            <label for="form-message">Your Message</label>
+            <textarea id="form-message" rows="4" placeholder="How can we help you?"></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send Message</button>
+          <div id="form-feedback" class="form-feedback"></div>
+        </form>
+      </div>
+
+      <div class="contact-grid">
         <div class="contact-info">
           <h3>Contact Information</h3>
           <ul class="contact-list">
@@ -286,5 +330,6 @@
     </div>
   </footer>
 
+  <script src="js/script.js"></script>
 </body>
 </html>
