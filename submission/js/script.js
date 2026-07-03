@@ -1,15 +1,11 @@
-// Santa Ana Calm Waters Academy - CAT 2 JavaScript
-
-// ============================================
 // FEATURE 1: Loop-rendered dynamic content
-// ============================================
 var programs = [
-  { name: "Music & Performing Arts", description: "Choir, instruments, and drama productions", slots: 30 },
+  { name: "Music & Performing Arts", description: "Choir, instruments, and drama clubs", slots: 30 },
   { name: "Sports Academy", description: "Football, athletics, and swimming programs", slots: 25 },
   { name: "Scouts & Guides", description: "Leadership, camping, and community service", slots: 20 },
   { name: "Science Club", description: "Experiments, innovations, and science fairs", slots: 15 },
   { name: "Art & Craft", description: "Drawing, painting, and creative crafts", slots: 20 },
-  { name: "Debate Society", description: "Public speaking, debate, and model UN", slots: 15 }
+  { name: "Debate Society", description: "Public speaking, debate, and spokenword", slots: 15 }
 ];
 
 function renderPrograms() {
@@ -46,11 +42,76 @@ function renderPrograms() {
     container.appendChild(card);
   });
 }
+// FEATURE 5: Click-to-reveal on banner
+function setupBannerReveal() {
+  var banner = document.querySelector(".hero-image");
+  if (!banner) return;
 
+  banner.addEventListener("click", function() {
+    var caption = document.getElementById("banner-caption");
+    if (caption) {
+      caption.classList.toggle("visible");
+    }
+  });
+}
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", function() {
+  renderPrograms();
+  loadWishlist();
+  renderWishlist();
+  setupCustomAdd();
+  setupFormValidation();
+  setupThemeToggle();
+  setupBannerReveal();
+});
 
-// ============================================
+// FEATURE 4: Persistent state with localStorage
+function setupThemeToggle() {
+  var toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+
+  // restore saved theme on load
+  var savedTheme = localStorage.getItem("sacwa-theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-theme");//realistically who likes light mode😂😂🤦‍♀️
+    toggle.textContent = "Light Mode";
+  }
+
+  toggle.addEventListener("click", function() {
+    document.body.classList.toggle("dark-theme");
+
+    if (document.body.classList.contains("dark-theme")) {
+      localStorage.setItem("sacwa-theme", "dark");
+      toggle.textContent = "Light Mode";
+    } else {
+      localStorage.setItem("sacwa-theme", "light");
+      toggle.textContent = "Dark Mode";
+    }
+  });
+}
+// FEATURE 5: Click-to-reveal on banner
+function setupBannerReveal() {
+  var banner = document.querySelector(".hero-image");
+  if (!banner) return;
+
+  banner.addEventListener("click", function() {
+    var caption = document.getElementById("banner-caption");
+    if (caption) {
+      caption.classList.toggle("visible");
+    }
+  });
+}
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", function() {//eventlistener for when the DOM is fully loaded
+  renderPrograms();
+  loadWishlist();
+  renderWishlist();
+  setupCustomAdd();
+  setupFormValidation();
+  setupThemeToggle();
+  setupBannerReveal();
+});
 // FEATURE 2: Dynamically add & remove elements
-// ============================================
 var wishlist = [];
 
 function loadWishlist() {
@@ -70,7 +131,7 @@ function addToWishlist(itemName) {
 
   // no duplicates
   if (wishlist.indexOf(itemName) !== -1) {
-    showWishlistFeedback(itemName + " is already on your wishlist.");
+    showWishlistFeedback(itemName + " is already on your wishlist!");
     return;
   }
 
@@ -98,7 +159,7 @@ function renderWishlist() {
   if (wishlist.length === 0) {
     var empty = document.createElement("p");
     empty.className = "wishlist-empty";
-    empty.textContent = "No items yet. Add activities from above!";
+    empty.textContent = "No items found. Add activities from above!";
     list.appendChild(empty);
   } else {
     wishlist.forEach(function(item) {
@@ -154,11 +215,7 @@ function setupCustomAdd() {
     }
   });
 }
-
-
-// ============================================
 // FEATURE 3: Form handling with validation
-// ============================================
 function setupFormValidation() {
   var form = document.getElementById("contact-form");
   if (!form) return;
@@ -228,61 +285,3 @@ function setupFormValidation() {
     messageInput.value = "";
   });
 }
-
-
-// ============================================
-// FEATURE 4: Persistent state with localStorage
-// ============================================
-function setupThemeToggle() {
-  var toggle = document.getElementById("theme-toggle");
-  if (!toggle) return;
-
-  // restore saved theme on load
-  var savedTheme = localStorage.getItem("sacwa-theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-theme");
-    toggle.textContent = "Light Mode";
-  }
-
-  toggle.addEventListener("click", function() {
-    document.body.classList.toggle("dark-theme");
-
-    if (document.body.classList.contains("dark-theme")) {
-      localStorage.setItem("sacwa-theme", "dark");
-      toggle.textContent = "Light Mode";
-    } else {
-      localStorage.setItem("sacwa-theme", "light");
-      toggle.textContent = "Dark Mode";
-    }
-  });
-}
-
-
-// ============================================
-// FEATURE 5: Click-to-reveal on banner
-// ============================================
-function setupBannerReveal() {
-  var banner = document.querySelector(".hero-image");
-  if (!banner) return;
-
-  banner.addEventListener("click", function() {
-    var caption = document.getElementById("banner-caption");
-    if (caption) {
-      caption.classList.toggle("visible");
-    }
-  });
-}
-
-
-// ============================================
-// Initialize on page load
-// ============================================
-document.addEventListener("DOMContentLoaded", function() {
-  renderPrograms();
-  loadWishlist();
-  renderWishlist();
-  setupCustomAdd();
-  setupFormValidation();
-  setupThemeToggle();
-  setupBannerReveal();
-});
