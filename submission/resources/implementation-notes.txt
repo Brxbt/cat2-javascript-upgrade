@@ -1,0 +1,30 @@
+Santa Ana Calm Waters Academy
+================================================
+
+1. Loop-Rendered Dynamic Content
+   - Array of 6 co-curricular program objects stored in the programs array.
+   - Each object has a name property as required.
+   - Rendered into the DOM using forEach() inside renderPrograms().
+   - Cards created dynamically with createElement and appendChild.
+
+2. Dynamically Add & Remove Elements
+   - Wishlist feature where users add programs from cards or type custom entries.
+   - New items created with createElement() and appendChild().
+   - Each item gets a Remove button that calls remove() to delete the element.
+   - Duplicate entries prevented with indexOf check.
+
+3. Form Handling with Validation
+   - Contact form uses event.preventDefault() to stop default submission.
+   - Reads .value from name, email, and message inputs.
+   - Validates empty fields, name length, email format, message length.
+   - Visible feedback written via textContent and className on #form-feedback div.
+
+4. Persistent State with localStorage
+   - Wishlist items saved to localStorage under "sacwa-wishlist" as JSON.
+   - Theme preference saved under "sacwa-theme" and restored on reload.
+   - Both features survive page refresh and browser close/reopen.
+
+5. Click-to-Reveal on Banner
+   - Clicking the hero banner image toggles "visible" class on #banner-caption.
+   - Uses classList.toggle() as required.
+   - CSS transition handles the slide-up animation.
